@@ -2,12 +2,12 @@
 makeRequest = () => {
     return new Promise((resolve, reject) => {
         let apiRequest = new XMLHttpRequest();
-        apiRequest.open('GET', 'http://localhost:3000/api/cameras/');
+        apiRequest.open('GET', 'http://localhost:3000/api/camerass/');
         apiRequest.send();
         apiRequest.onreadystatechange = () => {
             if (apiRequest.readyState === 4) {
                 if (apiRequest.status === 200) {
-                    //if ready state and status return success codes resolve promise with response.
+                    //if ready state and status return success the code resolves promise with response.
                     resolve(JSON.parse(apiRequest.response));
                 }
                 else {
@@ -29,7 +29,7 @@ createCard = (response) => {
         const newA = document.createElement('a');
 
         //add the bootstrap classes and attributes
-        card.classList.add('col-12', 'col-sm-6', 'card', 'p-3', 'bg-dark', 'text-warning');
+        card.classList.add('col-12', 'col-lg-6', 'card', 'p-3', 'bg-dark', 'text-warning');
         newImg.classList.add('img', 'rounded-circle');
         newA.classList.add('stretched-link', 'text-light');
         
@@ -45,6 +45,7 @@ createCard = (response) => {
         card.innerHTML += '<p>' + '$' + response[i].price / 100 + '</p>';
 
         //append the completed elements to the card
+        //and the card to the main
         card.appendChild(newImg);
         card.appendChild(newA);
         main.appendChild(card);
@@ -61,7 +62,7 @@ init = async () => {
         createCard(response);
     } catch (error) {
         //error message displayed if request fails.
-        document.querySelector('main').innerHTML = '<h2 class = "mx-auto">' + error + '<h2>';
+        document.querySelector('main').innerHTML = '<h2 class = "mx-auto">' + error + '</h2>';
     }
 }
 
