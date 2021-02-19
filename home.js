@@ -7,7 +7,7 @@ makeRequest = () => {
         apiRequest.onreadystatechange = () => {
             if (apiRequest.readyState === 4) {
                 if (apiRequest.status === 200) {
-                    //if ready state and status return success the code resolves promise with response.
+                    //if ready state and status return success code resolve promise with response.
                     resolve(JSON.parse(apiRequest.response));
                 }
                 else {
