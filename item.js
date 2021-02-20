@@ -37,12 +37,13 @@ createCard = (response) => {
     const newP = document.createElement('p');
 
     //setup classes and attributes
-    newImg.classList.add('img');
+    newImg.classList.add('img', 'border', 'border-warning', 'rounded', 'mb-3');
     newImg.setAttribute('width', '100%');
     newImg.setAttribute('src', img);
-    card.classList.add('col', 'card', 'p-3');
+    card.classList.add('col', 'card', 'p-3', 'bg-dark', 'text-warning');
     card.innerHTML += '<h2>' + response.name + '</h2>';
     card.appendChild(newImg);
+    dropMenu.classList.add('bg-dark', 'text-warning')
 
     //setup dropdown menu
     dropMenuLabel.innerHTML = 'Choose your lense here: ';
@@ -68,14 +69,20 @@ createCard = (response) => {
     //button listens for a click event and saves camera and lense choice to localstorage
     btn.addEventListener('click', () => {
         const len = document.querySelector('select').value;
-        const data = { name: response.name, id: response._id, lenses: len, description: response.description, price: response.price };
+        const data = { name: response.name, 
+                        id: response._id, 
+                        lenses: len, 
+                        description: response.description, 
+                        price: response.price 
+                };
         localStorage.setItem(response._id + len, JSON.stringify(data));
         newP.innerText = response.name + ' with the ' + len + ' lense added to the cart.';
         card.appendChild(newP);
 
     });
-    card.innerHTML += '<a href = "index.html">Back to Shop</a>';
+    card.innerHTML += '<a href = "home.html">Back to Shop</a>';
     card.appendChild(btn);
+    
 
     main.appendChild(card);
 }
