@@ -1,15 +1,15 @@
 //displays the headings for the products table
 displayProductsHeadings = () => {
     const br = document.createElement('br');
-    //if theres no products added thendisplay empty cart message.
+    //if theres no products added then display empty cart message.
     if (localStorage.length == 0) {
         document.getElementById('orderSection').remove();
-        main.innerHTML = '<h2 class = "text-center">Your Shopping Cart is Currently Empty</h2>';
+        main.innerHTML = '<h2 class = "text-center text-warning bg-dark p-3 m-0">Your Shopping Cart is Currently Empty</h2>';
     } else {
         //create and display table headings
         const heading = document.createElement('h2');
         heading.innerHTML = 'Items in Your Cart';
-        heading.classList.add('text-center')
+        heading.classList.add('text-center', 'text-warning', 'bg-dark', 'p-3', 'm-0')
         main.parentNode.insertBefore(heading, main);
         heading.parentNode.insertBefore(br, heading);
         const tHeader = document.createElement('tr');
@@ -32,7 +32,7 @@ displayProducts = () => {
         const xButton = document.createElement('button');
 
         table.setAttribute('id', 'table');
-        table.classList.add('table');
+        table.classList.add('table', 'bg-dark', 'text-warning', 'm-0');
         main.appendChild(table);
 
         xButton.classList.add('btn', 'btn-danger');
@@ -46,7 +46,7 @@ displayProducts = () => {
         x.appendChild(xButton);
 
         totalPrice += data.price;
-        total.classList.add('text-center');
+        total.classList.add('text-center', 'bg-dark', 'text-warning', 'pb-3', 'm-0');
         total.innerHTML = 'Total Price is - $' + totalPrice / 100;
         sessionStorage.setItem('price', JSON.stringify(totalPrice));
         main.appendChild(total);
@@ -84,7 +84,7 @@ validation = () => {
     const regName = /^[A-Za-z]{3,32}$/;
     const regAddress = /^[A-Za-z0-9 ]{7,32}$/;
     const emailReg = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
-
+    
     //validation section uses regex to validate - uses blur listener (on leaving the field.)
     //if true update the validation boolean - add green style.
     //else display error message - and add red style.
@@ -202,3 +202,41 @@ if (email.value === '') {
 }
 });
 }
+
+//function to make api request
+makeRequest = (data) => {
+    return new Promise((resolve, reject) => {
+        let apiRequest = new XMLHttpRequest();
+        apiRequest.open('POST', 'http://localhost:3000/api/cameras/order');
+        apiRequest.setRequestHeader('Content-Type', 'application/json');
+        apiRequest.send(JSON.stringify(data));
+        apiRequest.onreadystatechange = () => {
+            if (apiRequest.readyState === 4) {
+                if (apiRequest.status === 201) {
+                    //if ready state and status return success codes resolve promise with response.
+                    resolve(JSON.parse(apiRequest.response));
+                }
+                if (apiRequest.status === 400) {
+                    //if unsuccessfull reject with error message.
+                    reject('Something Went Wrong - API Request Failed!!!')
+                }
+            }
+        };
+    });
+}
+
+//opens the confirmation page - after clearing localStorage and saving data to session storage.
+displayConfirmation = (response) => {
+    localStorage.clear();
+    sessionStorage.setItem('data', JSON.stringify(response));
+    window.location = 'confirmation.html';
+}
+
+const main = document.querySelector('main');
+const table = document.createElement('table');
+const products = [];
+
+displayProductsHeadings();
+let totalPrice = 0;
+displayProducts();
+validation();
