@@ -84,7 +84,7 @@ validation = () => {
     const regName = /^[A-Za-z]{3,32}$/;
     const regAddress = /^[A-Za-z0-9 ]{7,32}$/;
     const emailReg = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
-    
+
     //validation section uses regex to validate - uses blur listener (on leaving the field.)
     //if true update the validation boolean - add green style.
     //else display error message - and add red style.
@@ -201,6 +201,20 @@ if (email.value === '') {
     email.style.border = 'medium solid red';
 }
 });
+}
+
+submitForm = async (orderObject) => {
+    try {
+        //call makeRequest for api request and await response
+        const requestPromise = makeRequest(orderObject);
+        const response = await requestPromise;
+
+        //pass response to displayConfirmation function.
+        displayConfirmation(response);
+
+    } catch (error) {
+        document.querySelector('form').innerHTML = '<h2 class = "mx-auto">' + error + '<h2>';
+    }
 }
 
 //function to make api request
