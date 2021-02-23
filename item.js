@@ -36,7 +36,7 @@ createCard = (response) => {
     const dropMenu = document.createElement('select');
     const newP = document.createElement('p');
 
-    //setup classes and attributes
+    //add classes and attributes
     newImg.classList.add('img', 'border', 'border-warning', 'rounded', 'mb-3');
     newImg.setAttribute('width', '100%');
     newImg.setAttribute('src', img);
