@@ -45,7 +45,7 @@ createCard = (response) => {
     card.appendChild(newImg);
     dropMenu.classList.add('bg-dark', 'text-warning')
 
-    //setup dropdown menu
+    //add dropdown menu
     dropMenuLabel.innerHTML = 'Choose your lense here: ';
     form.appendChild(dropMenuLabel);
     form.appendChild(dropMenu);
