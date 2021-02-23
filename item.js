@@ -76,7 +76,7 @@ createCard = (response) => {
                         price: response.price 
                 };
         localStorage.setItem(response._id + len, JSON.stringify(data));
-        newP.innerText = response.name + ' with the ' + len + ' lense added to the cart.';
+        newP.innerText = response.name + ' with the ' + len + ' lense has been added to the cart.';
         card.appendChild(newP);
 
     });
