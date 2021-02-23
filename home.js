@@ -32,12 +32,12 @@ createCard = (response) => {
         card.classList.add('col-12', 'col-lg-6', 'card', 'p-3', 'bg-dark', 'text-warning');
         newImg.classList.add('img', 'rounded-circle');
         newA.classList.add('stretched-link', 'text-light');
-        
-        //id is passed in a querystring
-        newA.setAttribute('href', 'item.html?id=' + response[i]._id);
         newA.textContent = 'View More Details';
         newImg.setAttribute('width', '100%');
         newImg.setAttribute('src', img);
+        
+        //id is passed in a querystring
+        newA.setAttribute('href', 'item.html?id=' + response[i]._id);
 
         //items description added
         card.innerHTML += '<h2>' + response[i].name + '</h2>';
