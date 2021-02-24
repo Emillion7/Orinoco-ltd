@@ -1,17 +1,14 @@
 //displays the headings for the products table
 displayProductsHeadings = () => {
-    const br = document.createElement('br');
     //if theres no products added then display empty cart message.
     if (localStorage.length == 0) {
         document.getElementById('orderSection').remove();
-        main.innerHTML = '<h2 class = "text-center text-warning bg-dark p-3 m-0">Your Shopping Cart is Currently Empty</h2>';
+        main.innerHTML = '<h2 class = "text-center text-danger bg-dark p-3 m-0">Your Shopping Cart is Currently Empty</h2>';
     } else {
         //create and display table headings
         const heading = document.createElement('h2');
         heading.innerHTML = 'Items in Your Cart';
-        heading.classList.add('text-center', 'text-warning', 'bg-dark', 'p-3', 'm-0')
-        main.parentNode.insertBefore(heading, main);
-        heading.parentNode.insertBefore(br, heading);
+        heading.classList.add('text-center', 'text-warning', 'bg-dark', 'p-3', 'm-0');
         const tHeader = document.createElement('tr');
         tHeader.innerHTML = '<th>Name</th>' + '<th>Lense</th>' + '<th>Price</th>' + '<th></th>';
         table.appendChild(tHeader);
