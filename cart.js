@@ -8,7 +8,8 @@ displayProductsHeadings = () => {
         //create and display table headings
         const heading = document.createElement('h2');
         heading.innerHTML = 'Items in Your Cart';
-        heading.classList.add('text-center', 'text-warning', 'bg-dark', 'p-3', 'm-0');
+        heading.classList.add('text-center', 'text-warning', 'bg-dark', 'p-3', 'm-0')
+        main.parentNode.insertBefore(heading, main);
         const tHeader = document.createElement('tr');
         tHeader.innerHTML = '<th>Name</th>' + '<th>Lense</th>' + '<th>Price</th>' + '<th></th>';
         table.appendChild(tHeader);
@@ -18,7 +19,7 @@ displayProductsHeadings = () => {
 displayProducts = () => {
     const total = document.createElement('h5');
 
-    //retrieve products from localstorage and display
+    //retrieve products from localstorage and display them
     for (let i = 0; i < localStorage.length; i++) {
         let data = JSON.parse(localStorage.getItem(localStorage.key(i)));
         const tRow = document.createElement('tr');
@@ -51,7 +52,7 @@ displayProducts = () => {
         //event listener used to remove an item.
         xButton.addEventListener('click', () => {
             localStorage.removeItem(localStorage.key(i));
-            xButton.parentElement.parentElement.remove();
+            xButton.parentElement.remove();
             location.reload();
         });
         tRow.appendChild(name);
@@ -79,7 +80,7 @@ validation = () => {
     let isEmailValid = false;
     //regex for data validation
     const regName = /^[A-Za-z]{3,32}$/;
-    const regAddress = /^[A-Za-z0-9 ]{7,32}$/;
+    const regAddress = /^[A-Za-z0-9/ ]{7,32}$/;
     const emailReg = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
 
     //validation section uses regex to validate - uses blur listener (on leaving the field.)
@@ -91,12 +92,18 @@ validation = () => {
             surnameError.classList.add('d-none');
             isSurnameValid = true;
             surname.style.border = 'medium solid green';
+            surname.style.background = '';
         }
         else {
             surnameError.classList.remove('d-none');
             surname.style.border = 'medium solid red';
+            surname.style.background = '';
         }
     });
+
+    surname.addEventListener('focus', function($event){
+        surname.style.background = 'lightgreen';
+        }, ); 
 
     //forname validation
     forename.addEventListener('blur', () => {
@@ -104,12 +111,18 @@ validation = () => {
             forenameError.classList.add('d-none');
             isForenameValid = true;
             forename.style.border = 'medium solid green';
+            forename.style.background = '';
         }
         else {
             forenameError.classList.remove('d-none');
             forename.style.border = 'medium solid red';
+            forename.style.background = '';
         }
     });
+
+    forename.addEventListener('focus', function($event){
+        forename.style.background = 'lightgreen';
+        }, ); 
 
     //address validation
     address.addEventListener('blur', () => {
@@ -117,12 +130,18 @@ validation = () => {
             addressError.classList.add('d-none');
             isValidAddress = true;
             address.style.border = 'medium solid green';
+            address.style.background = '';
         }
         else {
             addressError.classList.remove('d-none');
             address.style.border = 'medium solid red';
+            address.style.background = '';
         }
     });
+
+    address.addEventListener('focus', function($event){
+        address.style.background = 'lightgreen';
+        }, ); 
 
     //city validation
     city.addEventListener('blur', () => {
@@ -130,12 +149,18 @@ validation = () => {
             cityError.classList.add('d-none');
             isCityValid = true;
             city.style.border = 'medium solid green';
+            city.style.background = '';
         }
         else {
             cityError.classList.remove('d-none');
             city.style.border = 'medium solid red';
+            city.style.background = '';
         }
     });
+
+    city.addEventListener('focus', function($event){
+        city.style.background = 'lightgreen';
+        }, ); 
 
     //email validation
     email.addEventListener('blur', () => {
@@ -144,12 +169,18 @@ validation = () => {
             isEmailValid = true;
             email.style.border = 'medium solid green';
             submitError.classList.add('d-none');
+            email.style.background = '';
         }
         else {
             emailError.classList.remove('d-none');
             email.style.border = 'medium solid red';
+            email.style.background = '';
         }
     });
+
+    email.addEventListener('focus', function($event){
+        email.style.background = 'lightgreen';
+        }, ); 
 
     //submit button listener - listens for click event
     submitButton.addEventListener('click', ($event) => {
