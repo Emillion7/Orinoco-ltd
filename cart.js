@@ -198,37 +198,37 @@ validation = () => {
             contact, products
         };
  
-    //submitForm() is called only when all fields are validated and validation boolean is set to true.
-if ((isSurnameValid) && (isForenameValid) && (isCityValid) && (isEmailValid) && (isValidAddress)) {
-    submitForm(orderObject);
-}
-else {
-    //else display an error message
-    document.getElementById('submitError').classList.remove('d-none');
-}
+        //submitForm() is called only when all fields are validated and validation boolean is set to true.
+        if ((isSurnameValid) && (isForenameValid) && (isCityValid) && (isEmailValid) && (isValidAddress)) {
+            submitForm(orderObject);
+        }
+        else {
+        //else display an error message
+            document.getElementById('submitError').classList.remove('d-none');
+        }
 
-//some more validation to change styles to red and display error message if any field is left empty.
-if (surname.value === '') {
-    surnameError.classList.remove('d-none');
-    surname.style.border = 'medium solid red';
-}
-if (forename.value === '') {
-    forenameError.classList.remove('d-none');
-    forename.style.border = 'medium solid red';
-}
-if (address.value === '') {
-    addressError.classList.remove('d-none');
-    address.style.border = 'medium solid red';
-}
-if (city.value === '') {
-    cityError.classList.remove('d-none');
-    city.style.border = 'medium solid red';
-}
-if (email.value === '') {
-    emailError.classList.remove('d-none');
-    email.style.border = 'medium solid red';
-}
-});
+        //some more validation to change styles to red and display error message if any field is left empty.
+        if (surname.value === '') {
+            surnameError.classList.remove('d-none');
+            surname.style.border = 'medium solid red';
+        }
+        if (forename.value === '') {
+            forenameError.classList.remove('d-none');
+            forename.style.border = 'medium solid red';
+        }
+        if (address.value === '') {
+            addressError.classList.remove('d-none');
+            address.style.border = 'medium solid red';
+        }
+        if (city.value === '') {
+            cityError.classList.remove('d-none');
+            city.style.border = 'medium solid red';
+        }
+        if (email.value === '') {
+            emailError.classList.remove('d-none');
+            email.style.border = 'medium solid red';
+        }
+    });
 }
 
 submitForm = async (orderObject) => {
