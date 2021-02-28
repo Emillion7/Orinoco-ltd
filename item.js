@@ -62,7 +62,7 @@ createCard = (response) => {
     card.innerHTML += '<p>' + response.description + '</p>';
     card.innerHTML += '<p>' + '$' + response.price / 100 + '</p>';
 
-    btn.classList.add('btn', 'btn-primary', 'w-25', 'mx-auto');
+    btn.classList.add('btn', 'btn-primary', 'col-12', 'col-md-6','col-lg-4', 'm-3', 'mx-auto');
     newP.classList.add('text-center', 'text-success');
     btn.innerHTML = 'Add to cart';
 
