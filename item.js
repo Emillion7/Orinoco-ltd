@@ -80,7 +80,7 @@ createCard = (response) => {
         card.appendChild(newP);
 
     });
-    card.innerHTML += '<a href = "home.html" class = "text-white">Back to Shop</a>';
+    card.innerHTML += '<a href = "index.html" class = "text-white">Back to Shop</a>';
     
     card.appendChild(btn);
     main.appendChild(card);
